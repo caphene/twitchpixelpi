@@ -134,15 +134,15 @@ def neo_loop9():
     NewKitt(strip, random.randint(0, 150), random.randint(0, 150), random.randint(0, 150), 8, .1, .1)
     Blank(strip)
 
-def neo_progmem_run(GameName, loops=3):
+def neo_progmem_run(GameName, loops=3, sleep=0.5):
     #Process arguments
     opt_parse()
     #Create NeoPixel object with appropriate configuration.
     strip = Adafruit_NeoPixel(MATRIX_COUNT, MATRIX_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, MATRIX_BRIGHTNESS, MATRIX_CHANNEL, LED_STRIP)
     #Intialize the library (must be called once before other functions).
     strip.begin()
-    print("Calling:  CharAnimation(",GameName,",",loops,")")
-    CharAnimation(strip, GameName, loops)
+    print("Calling:  CharAnimation(",GameName,",",loops,", ",sleep,")")
+    CharAnimation(strip, GameName, loops, sleep)
     Blank(strip)
 
 """

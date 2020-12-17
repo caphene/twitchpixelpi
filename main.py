@@ -89,7 +89,7 @@ def bot_loop():
 
             for pattern in config.MATRIX05:
                 if re.match(pattern[0], message):
-                    main2.neo_progmem_run("Mario")
+                    main2.neo_progmem_run("Mario",5,0.2)
 
             for pattern in config.BLANK:
                 if re.match(pattern[0], message):

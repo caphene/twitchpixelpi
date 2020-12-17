@@ -44,7 +44,7 @@ def SetAll(strip, color):
         strip.setPixelColor(i, color)
 
 # Call progmem character animations by calling DigDug, Qbert, or BombJack
-def CharAnimation(strip, gamename, loops=3):
+def CharAnimation(strip, gamename, loops=3, sleep=0.5):
     frames = play(gamename)
     sequence = Sequences[gamename]
     for l in range(loops):
@@ -52,7 +52,7 @@ def CharAnimation(strip, gamename, loops=3):
             for j in range(256):
                 strip.setPixelColorRGB(j, frames[sequence[i]][j][0], frames[sequence[i]][j][1], frames[sequence[i]][j][2])
             strip.show()
-            time.sleep(0.5)
+            time.sleep(sleep)
 
 def FadeRGB(strip):
     for i in range(0, 3):
