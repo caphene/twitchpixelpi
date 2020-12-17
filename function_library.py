@@ -44,18 +44,15 @@ def SetAll(strip, color):
         strip.setPixelColor(i, color)
 
 # Call progmem character animations by calling DigDug, Qbert, or BombJack
-def CharAnimation(strip, gamename):
-    firstframe = play(gamename, 0)
-    secondframe = play(gamename, 1)
-
-    for i in range(256):
-        strip.setPixelColorRGB(i, firstframe[i][0], firstframe[i][1], firstframe[i][2])
-    strip.show()
-    time.sleep(0.5)
-    for f in range(256):
-        strip.setPixelColorRGB(f, secondframe[f][0], secondframe[f][1], secondframe[f][2])
-    strip.show()
-    time.sleep(0.5)
+def CharAnimation(strip, gamename, loops=3):
+    frames = play(gamename)
+    sequence = Sequences[gamename]
+    for l in range(loops):
+        for i in range(len(sequence)):
+            for j in range(256):
+                strip.setPixelColorRGB(j, frames[sequence[i]][j][0], frames[sequence[i]][j][1], frames[sequence[i]][j][2])
+            strip.show()
+            time.sleep(0.5)
 
 def FadeRGB(strip):
     for i in range(0, 3):
@@ -152,9 +149,9 @@ def Sparkle(strip, red, green, blue, SpeedDelay):
     strip.show()
     time.sleep(SpeedDelay)
     strip.setPixelColor(pixel, Color(0, 0, 0))
-    
+
 def SnowSparkle(strip, red, green, blue, SparkleDelay, SpeedDelay):
-    SetAll(strip, Color(red, green, blue))    
+    SetAll(strip, Color(red, green, blue))
     pixel=random.randrange(0, LED_COUNT)
     strip.setPixelColor(pixel, Color(255, 255, 255))
     strip.show()
@@ -162,7 +159,7 @@ def SnowSparkle(strip, red, green, blue, SparkleDelay, SpeedDelay):
     strip.setPixelColor(pixel, Color(red, green, blue))
     strip.show()
     time.sleep(SpeedDelay)
-    
+
 def RunningLights(strip, red, green, blue, WaveDelay):
     Position=0
     for i in range (0, (LED_COUNT * 2)):
@@ -203,7 +200,7 @@ def Wheel(WheelPosition):
 	else:
 		WheelPosition -= 170
 		return Color(0, WheelPosition * 3, 255 - WheelPosition * 3)
-	    
+
 def Rainbow(strip, SpeedDelay):
     for i in range(0, 256):
         for j in range(0, LED_COUNT):
@@ -219,7 +216,7 @@ def RainbowCycle(strip, Iterations, SpeedDelay):
     time.sleep(SpeedDelay)
     SetAll(strip, Color(0, 0, 0))
     strip.show()
-    
+
 def ColorChase(strip, red, green, blue, SpeedDelay):
 	for i in range(LED_COUNT):
 		strip.setPixelColor(i, Color(red, green, blue))
@@ -666,7 +663,7 @@ def Clock2(strip, IncludeHours):
     if Seconds==HourPosition and Minutes==HourPosition:
         strip.setPixelColor(Seconds, Color(255, 255, 255))
     strip.show()
-    
+
 def FillDownRandom(strip, SpeedDelay, DisplayDelay, PauseDelay, FlushDelay):
     SetAll(strip, Color(0, 0, 0))
     #Fill down with random colors

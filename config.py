@@ -70,6 +70,12 @@ MATRIX02 = [
 MATRIX03 = [
     [r"!digdug", "led"]
 ]
+
 MATRIX04 = [
     [r"!link", "led"]
 ]
+
+MATRIX05 = [
+    [r"!mario", "led"]
+]
+
