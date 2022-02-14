@@ -2,7 +2,7 @@ HOST = "irc.twitch.tv"              # This is Twitchs IRC server
 PORT = 6667                         # Twitchs IRC server listens on port 6767
 NICK = "twitch_username"            # Twitch username your using for your bot
 PASS = "your_oauthtoken" # your Twitch OAuth token
-CHAN = "#your_channel"                   # the channel you want the bot to join.
+CHANNELS = []                       # List of channel names to connect to
 RATE = (20/30) # messages per seccond
 BAN_PAT = [
     r"swear",
